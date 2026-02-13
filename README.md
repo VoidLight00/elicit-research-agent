@@ -47,22 +47,31 @@ User: "카페인이 인지에 미치는 영향은?"
 
 ## 🚀 Quick Start
 
-### 1. Clone & Install
+### Option A: One-Line Install (Recommended)
+
+Just send this message to your OpenClaw agent:
+
+> **이 스킬 설치해줘: https://github.com/VoidLight00/elicit-research-agent**
+
+Your agent will clone the repo, install the skill, and set everything up automatically.
+
+### Option B: Manual Install
 
 ```bash
 git clone https://github.com/VoidLight00/elicit-research-agent.git
-cp SKILL.md ~/.openclaw/workspace/skills/elicit-research/SKILL.md
+mkdir -p ~/.openclaw/workspace/skills/elicit-research
+cp elicit-research-agent/SKILL.md ~/.openclaw/workspace/skills/elicit-research/SKILL.md
 ```
 
-### 2. Login to Elicit
+### Then: Login to Elicit
 
-Open Elicit in the OpenClaw browser and sign in with your account:
+Sign up at [elicit.com](https://elicit.com) (free) and log in via OpenClaw browser:
 
 ```
-"Open elicit.com in the OpenClaw browser and log in"
+"OpenClaw 브라우저로 elicit.com 열어서 로그인해줘"
 ```
 
-### 3. Search
+### Start Searching
 
 ```
 "논문 검색해줘: 간헐적 단식이 체중 감량에 효과적인가?"
