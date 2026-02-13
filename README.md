@@ -83,7 +83,7 @@ Sign up at [elicit.com](https://elicit.com) (free) and log in via OpenClaw brows
 
 | Requirement | Details |
 |-------------|---------|
-| **OpenClaw** | With browser automation support |
+| **OpenClaw** | `npm install -g openclaw` ([docs](https://docs.openclaw.ai)) |
 | **Elicit Account** | Free tier works ([elicit.com](https://elicit.com)) |
 | **Browser Session** | Elicit login maintained in OpenClaw browser |
 

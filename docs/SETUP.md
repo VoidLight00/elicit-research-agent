@@ -1,5 +1,25 @@
 # Setup Guide
 
+## 0. Install OpenClaw
+
+If you don't have OpenClaw installed yet:
+
+```bash
+npm install -g openclaw
+```
+
+Then start the gateway:
+
+```bash
+openclaw gateway start
+```
+
+For detailed setup (API keys, channel config, etc.), see the [OpenClaw docs](https://docs.openclaw.ai).
+
+> 💡 **Already have OpenClaw?** Skip to step 1.
+
+---
+
 ## 1. Create an Elicit Account
 
 1. Go to [elicit.com](https://elicit.com)
