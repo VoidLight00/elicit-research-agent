@@ -1,58 +1,164 @@
-# 📚 Elicit Research Agent — OpenClaw Skill
+# 🔬 Elicit Research Agent
 
-논문 기반 답변을 자동으로 가져오는 OpenClaw 서브에이전트.
+**Automated academic paper search & AI summarization through browser automation.**
 
-[Elicit.com](https://elicit.com)의 1.38억 학술 논문 데이터베이스를 활용하여, 사용자의 질문에 대한 과학적 근거 기반 답변을 제공합니다.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-blue)](https://openclaw.com)
+[![Elicit](https://img.shields.io/badge/Elicit-138M%20papers-green)](https://elicit.com)
 
-## 작동 방식
+An OpenClaw skill that automates [Elicit.com](https://elicit.com) to search 138M+ academic papers and extract AI-powered summaries — no API key required.
+
+---
+
+## ✨ Features
+
+- 🌐 **Browser Automation** — Fully automated Elicit interaction via OpenClaw browser
+- 🔄 **Auto Query Optimization** — Korean/English questions → optimized academic queries
+- 📊 **Structured Extraction** — Paper titles, authors, year, journal, citations, summaries
+- 🤖 **AI Summary** — Elicit's built-in AI synthesis included in results
+- 🔗 **Source Links** — Direct Elicit URLs for further exploration
+- 💰 **Free Tier Compatible** — Works entirely within Elicit's free plan
+
+## 🔄 How It Works
 
 ```
-"커피가 수면에 미치는 영향이 뭐야?"
-    ↓ 질문 최적화 (한→영, 학술 용어 변환)
-"Effects of caffeine consumption on sleep quality and duration"
-    ↓ Elicit.com 브라우저 자동화
-    ↓ 검색 결과 스크래핑
-📄 논문 5편 요약 + 핵심 발견 + 원본 링크
+User: "카페인이 인지에 미치는 영향은?"
+         │
+         ▼
+┌─────────────────────────┐
+│  Query Optimization     │  Korean → English academic query
+│  "Effects of caffeine   │  + keyword expansion
+│   on cognitive function" │
+└────────────┬────────────┘
+             ▼
+┌─────────────────────────┐
+│  Browser Automation     │  Navigate → Login check →
+│  (OpenClaw browser)     │  Find papers → Search →
+│                         │  Wait for results
+└────────────┬────────────┘
+             ▼
+┌─────────────────────────┐
+│  Result Extraction      │  AI summary + paper list
+│  & Formatting           │  + metadata + URLs
+└────────────┬────────────┘
+             ▼
+📄 Structured research summary with 5-10 papers
 ```
 
-## 설치
+## 🚀 Quick Start
 
-1. 이 레포를 클론:
+### 1. Clone & Install
+
 ```bash
 git clone https://github.com/VoidLight00/elicit-research-agent.git
+cp SKILL.md ~/.openclaw/workspace/skills/elicit-research/SKILL.md
 ```
 
-2. 스킬 폴더를 OpenClaw workspace에 복사:
-```bash
-cp -r elicit-research-agent/skills/elicit-research ~/.openclaw/workspace/skills/
+### 2. Login to Elicit
+
+Open Elicit in the OpenClaw browser and sign in with your account:
+
+```
+"Open elicit.com in the OpenClaw browser and log in"
 ```
 
-3. Elicit.com에 가입 후, OpenClaw 브라우저에서 로그인:
-```
-에이전트에게: "OpenClaw 브라우저로 elicit.com 열어서 로그인해줘"
-```
+### 3. Search
 
-4. 사용:
 ```
 "논문 검색해줘: 간헐적 단식이 체중 감량에 효과적인가?"
 ```
 
-## 요구사항
+> See [docs/SETUP.md](docs/SETUP.md) for detailed setup instructions.
 
-- OpenClaw (브라우저 자동화 지원)
-- Elicit.com 계정 (무료 가능)
-- OpenClaw 브라우저에서 Elicit 로그인 상태 유지
+## 📋 Requirements
 
-## 기능
+| Requirement | Details |
+|-------------|---------|
+| **OpenClaw** | With browser automation support |
+| **Elicit Account** | Free tier works ([elicit.com](https://elicit.com)) |
+| **Browser Session** | Elicit login maintained in OpenClaw browser |
 
-- 한국어/영어 질문 지원
-- 질문 자동 최적화 (학술 검색에 적합하게)
-- 논문 제목, 저자, 연도, 핵심 발견 추출
-- 원본 Elicit 링크 제공
+## ⚙️ Configuration
 
-## License
+No API keys or environment variables needed. The skill uses browser automation with your existing Elicit session.
 
-MIT
+1. **Create an Elicit account** at [elicit.com](https://elicit.com) (Google login recommended)
+2. **Sign in** via the OpenClaw browser (`profile="openclaw"`)
+3. **Keep the session alive** — the browser persists login state
+
+## 💡 Usage Examples
+
+**English:**
+```
+"Research: effects of sleep deprivation on memory consolidation"
+"Find papers about intermittent fasting and weight loss"
+```
+
+**Korean (auto-translated):**
+```
+"논문 검색해줘: 카페인이 수면의 질에 미치는 영향"
+"연구 찾아줘: 명상이 스트레스 감소에 효과적인가"
+```
+
+> See [docs/USAGE.md](docs/USAGE.md) for advanced usage and tips.
+
+## 🏗️ Architecture
+
+```
+┌──────────────────────────────────────┐
+│           OpenClaw Agent             │
+│  ┌────────────┐  ┌───────────────┐  │
+│  │ Query      │  │ Result        │  │
+│  │ Optimizer  │→ │ Formatter     │  │
+│  └─────┬──────┘  └───────▲───────┘  │
+│        │                 │          │
+│  ┌─────▼─────────────────┴───────┐  │
+│  │     Browser Controller        │  │
+│  │     (profile="openclaw")      │  │
+│  └─────────────┬─────────────────┘  │
+└────────────────┼─────────────────────┘
+                 │
+        ┌────────▼────────┐
+        │   Elicit.com    │
+        │  138M+ papers   │
+        └─────────────────┘
+```
+
+**Key Components:**
+
+- **Query Optimizer** — Translates and refines user questions into effective academic search queries
+- **Browser Controller** — Navigates Elicit UI: login check → mode selection → search → result extraction
+- **Result Formatter** — Structures raw scraped data into clean markdown with citations
+
+## ⚠️ Limitations
+
+- **Browser-dependent** — UI changes on Elicit may break automation (fixable by updating SKILL.md selectors)
+- **Free tier limits** — Basic search is unlimited; reports limited to ~10/month
+- **Speed** — Browser automation takes 15-30 seconds per search
+- **No batch search** — One query at a time
+- **Session expiry** — Google/Elicit session may expire; manual re-login needed occasionally
+- **Pro features excluded** — Extract data, Systematic review, General research agent require Elicit Pro
+
+## 🤝 Contributing
+
+Contributions are welcome! Areas where help is appreciated:
+
+1. **Selector updates** — When Elicit UI changes, update aria selectors in SKILL.md
+2. **Query optimization** — Better translation/expansion strategies for non-English queries
+3. **Documentation** — Usage examples, troubleshooting tips
+4. **Language support** — Query optimization for more languages
+
+### How to contribute
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feat/your-feature`)
+3. Commit your changes (`git commit -m "feat: description"`)
+4. Push and open a Pull Request
+
+## 📄 License
+
+[MIT](LICENSE) — use it however you want.
 
 ---
-*Built with OpenClaw*
+
+*Built with [OpenClaw](https://openclaw.com) 🐙*
