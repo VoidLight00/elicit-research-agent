@@ -20,33 +20,24 @@ For detailed setup (API keys, channel config, etc.), see the [OpenClaw docs](htt
 
 ---
 
-## 1. Create an Elicit Account
+## 1. Create an Elicit Account & Login
 
-1. Go to [elicit.com](https://elicit.com)
-2. Click **"Sign up"**
-3. Select **"Continue with Google"** (recommended for seamless browser automation)
-4. Complete the signup process
+The agent will handle this automatically on first use.
 
-> 💡 Google login is recommended because OpenClaw browser can maintain the Google session, enabling automatic re-login.
+**What happens:**
+1. Agent opens [elicit.com](https://elicit.com) in the OpenClaw browser
+2. Checks if already logged in
+3. If not logged in → **asks you for your Elicit credentials**:
+   - Login method: Google (recommended) or email/password
+   - If Google: agent clicks "Continue with Google" (requires Google session in browser)
+   - If email: agent asks for your **email** and **password**, then types them into Elicit's login form
+4. Completes login and confirms success
 
-## 2. Login via OpenClaw Browser
+> ⚠️ **Privacy:** Your credentials are only used to type into Elicit's login page via the browser. They are NOT stored anywhere by the skill.
 
-The skill uses OpenClaw's built-in browser (`profile="openclaw"`) for automation.
+> 💡 **Google login recommended** — If your Google account is already signed in on the OpenClaw browser, login is fully automatic with no credentials needed.
 
-**First-time setup:**
-
-Tell your OpenClaw agent:
-
-```
-"Open elicit.com in the OpenClaw browser and log in with my Google account"
-```
-
-The agent will:
-1. Navigate to elicit.com
-2. Click "Sign in" → "Continue with Google"
-3. Complete the Google OAuth flow
-
-**Session persistence:** The OpenClaw browser maintains cookies between sessions. You typically only need to log in once.
+**Session persistence:** The OpenClaw browser maintains cookies between sessions. You typically only need to log in once. When the session expires, the agent will ask for credentials again.
 
 ## 3. Install the Skill
 

@@ -27,14 +27,32 @@ When the user asks in Korean, convert to an English academic query:
 
 ## Automation Steps
 
-### Step 1: Login Check
+### Step 1: Login Check & Auto-Login
 
 ```
 1. browser navigate → https://elicit.com (profile="openclaw")
 2. browser snapshot (refs="aria")
 3. Check for "Sign in" or "Sign up" button
-   - Found → Click "Sign in" → Click "Continue with Google" → auto-login
-   - Not found (search bar visible) → Already logged in
+   - Not found (search bar visible) → Already logged in ✅
+   - Found → proceed to login flow:
+
+LOGIN FLOW:
+   a. Click "Sign in"
+   b. Check if "Continue with Google" auto-completes (Google session may exist)
+   c. If login page still shows after Google attempt:
+      → ASK THE USER: "Elicit 로그인이 필요합니다. 로그인 방식을 선택해주세요:
+         1) Google 로그인 (브라우저에 Google 세션 필요)
+         2) 이메일/비밀번호 로그인"
+   d. If user chooses email/password:
+      → ASK: "Elicit 이메일을 알려주세요"
+      → ASK: "Elicit 비밀번호를 알려주세요"
+      → Type email into "Work email" textbox
+      → Type password into "Password" textbox
+      → Click "Sign up" / "Sign in" button
+   e. Verify login success: snapshot shows search bar or user avatar
+   f. If login fails → report error to user
+
+⚠️ NEVER store or log user credentials. Only use them to type into the browser.
 ```
 
 ### Step 2: Select "Find papers" Mode & Search
